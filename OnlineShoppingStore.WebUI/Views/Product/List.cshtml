@@ -4,57 +4,16 @@
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>List</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Name
-            @*@Html.DisplayNameFor(model => model.Product.Name)*@
-        </th>
-        <th>
-            Description
-            @*@Html.DisplayNameFor(model => model.Description)*@
-        </th>
-        <th>
-            Price
-            @*@Html.DisplayNameFor(model => model.Price)*@
-        </th>
-        <th>
-            Category
-            @*@Html.DisplayNameFor(model => model.Category)*@
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Products)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
-            </td>
-        </tr>
-    }
-</table>
-
+@foreach (var item in Model.Products)
+{
+    <div class="well">
+        <h3>
+            <strong>@item.Name</strong>
+            <span class="pull-right label label-primary">@item.Price.ToString("c")</span>
+        </h3>
+        <span class="lead">@item.Description</span>
+    </div>
+}
 <div>
 
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
